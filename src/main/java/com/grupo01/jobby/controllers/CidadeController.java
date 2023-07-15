@@ -19,13 +19,13 @@ public class CidadeController {
         return new ResponseEntity<>(cidadeService.save(cidade), HttpStatus.CREATED);
     }
 
-    @GetMapping
-    public ResponseEntity<Cidade> save(@RequestBody Integer id) {
-        return new ResponseEntity<>(cidadeService.buscar(1), HttpStatus.ACCEPTED);
+    @GetMapping("/{id}")
+    public ResponseEntity<Cidade> save(@PathVariable Integer id) {
+        return new ResponseEntity<>(cidadeService.buscar(id), HttpStatus.ACCEPTED);
     }
 
-    @DeleteMapping
-    public ResponseEntity<Cidade> delete(@RequestBody Integer id) {
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Boolean> delete(@PathVariable Integer id) {
 
         return new ResponseEntity<>(cidadeService.delete(id), HttpStatus.ACCEPTED);
     }
