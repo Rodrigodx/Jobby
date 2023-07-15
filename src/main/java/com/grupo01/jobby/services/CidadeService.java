@@ -1,6 +1,7 @@
 package com.grupo01.jobby.services;
 
 import com.grupo01.jobby.model.cadastro.Cidade;
+import com.grupo01.jobby.model.cadastro.exception.EntityNotFoundException;
 import com.grupo01.jobby.repositories.CidadeRepository;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
@@ -27,17 +28,17 @@ public class CidadeService {
     }
 
     @Transactional
-    public Cidade delete(Integer id) {
-        Optional<Cidade> cidadeOptional = cidadeRepository.findById(id);
+    public Boolean delete(Integer id) {
+        Optional<Cidade> cidadeOptional = Optional.ofNullable(cidadeRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Cidade com id = " + id + " não foi cadastrado.")));
         if (cidadeOptional.isEmpty()) {
-            return null;
+            return false;
 
         } else {
             Cidade cidade = new Cidade();
             BeanUtils.copyProperties(cidadeOptional.get(), cidade);
 
             cidadeRepository.delete(cidade);
-            return cidade;
+            return true;
         }
     }
 }
