@@ -1,14 +1,14 @@
 package com.grupo01.jobby.controllers;
 
+import com.grupo01.jobby.DTO.profissao.ProfissaoResquestDTO;
 import com.grupo01.jobby.model.cadastro.CadastroExperiencia;
+import com.grupo01.jobby.model.cadastro.Profissao;
 import com.grupo01.jobby.services.CadastroExperienciaService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -18,6 +18,11 @@ import java.util.List;
 public class CadastroExperienciaController {
 
     private final CadastroExperienciaService cadastroExperienciaService;
+
+    @PostMapping
+    public ResponseEntity<CadastroExperiencia> save(@Valid @RequestBody CadastroExperiencia dados){
+        return new ResponseEntity<>(cadastroExperienciaService.save(dados), HttpStatus.CREATED);
+    }
 
     @GetMapping
     public ResponseEntity<List<CadastroExperiencia>> findAll(){
