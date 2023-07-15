@@ -1,6 +1,7 @@
 package com.grupo01.jobby.DTO;
 
 import com.grupo01.jobby.model.cadastro.*;
+import com.grupo01.jobby.model.cadastro.enums.SexoEnum;
 import lombok.Data;
 
 
@@ -15,7 +16,7 @@ public class CadastroDTO {
     private String nome;
 
 
-    private Sexo sexo;
+    private SexoEnum sexoEnum;
 
 
     private PretencaoSalarial pretencaoSalarial;
