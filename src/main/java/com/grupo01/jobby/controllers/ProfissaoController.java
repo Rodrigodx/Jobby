@@ -5,10 +5,9 @@ import com.grupo01.jobby.services.ProfissaoService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping(value = "/api/profissoes")
@@ -22,5 +21,9 @@ public class ProfissaoController {
         return new ResponseEntity<>(profissaoService.save(profissao), HttpStatus.CREATED);
     }
 
+    @GetMapping
+    public ResponseEntity<List<Profissao>> findAll(){
+        return new ResponseEntity<>(profissaoService.findAll(), HttpStatus.OK);
+    }
 
 }
