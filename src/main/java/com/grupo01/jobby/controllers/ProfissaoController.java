@@ -5,6 +5,9 @@ import com.grupo01.jobby.model.cadastro.Profissao;
 import com.grupo01.jobby.services.ProfissaoService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -24,8 +27,8 @@ public class ProfissaoController {
     }
 
     @GetMapping
-    public ResponseEntity<List<Profissao>> findAll(){
-        return new ResponseEntity<>(profissaoService.findAll(), HttpStatus.OK);
+    public ResponseEntity<Page<Profissao>> findAll(@PageableDefault(size = 5, sort = { "name" }) Pageable page){
+        return new ResponseEntity<>(profissaoService.findAll(page), HttpStatus.OK);
     }
 
     @GetMapping("/{id}")

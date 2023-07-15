@@ -7,6 +7,8 @@ import com.grupo01.jobby.repositories.ProfissaoRepository;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.BeanUtils;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -26,8 +28,8 @@ public class ProfissaoService {
     }
 
 
-    public List<Profissao> findAll(){
-        return profissaoRepository.findAll();
+    public Page<Profissao> findAll(Pageable page){
+        return profissaoRepository.findAll(page);
     }
 
     public Profissao findById(Integer id){
