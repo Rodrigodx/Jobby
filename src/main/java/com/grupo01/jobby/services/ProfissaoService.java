@@ -26,4 +26,13 @@ public class ProfissaoService {
     public Profissao findById(Integer id){
         return profissaoRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Profissão com id = " + id + " não foi cadastrada."));
     }
+
+
+    @Transactional
+    public Profissao update(Integer id, Profissao dadosProfissao) {
+        Profissao profissao = findById(id);
+        profissao.atualizar(dadosProfissao);
+
+        return profissaoRepository.save(profissao);
+    }
 }

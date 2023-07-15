@@ -32,4 +32,9 @@ public class ProfissaoController {
     }
 
 
+    @PatchMapping("/{id}")
+    public ResponseEntity<Profissao> update(@PathVariable Integer id, @RequestBody Profissao dadosProfissao) {
+        return new ResponseEntity<>(profissaoService.update(id, dadosProfissao), HttpStatus.OK);
+    }
+
 }
