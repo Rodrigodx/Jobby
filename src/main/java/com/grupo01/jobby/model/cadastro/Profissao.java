@@ -1,5 +1,7 @@
 package com.grupo01.jobby.model.cadastro;
 
+import com.grupo01.jobby.DTO.profissao.ProfissaoResponseDTO;
+import com.grupo01.jobby.DTO.profissao.ProfissaoResquestDTO;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -15,7 +17,7 @@ public class Profissao {
     private Integer id;
     private String name;
 
-    public void atualizar(Profissao dadosProfissao) {
+    public void atualizar(ProfissaoResquestDTO dadosProfissao) {
         this.name = dadosProfissao.getName();
     }
 }
