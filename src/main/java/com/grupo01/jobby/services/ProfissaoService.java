@@ -36,15 +36,12 @@ public class ProfissaoService {
 
 
     @Transactional
-    public Boolean update(Integer id, Profissao dadosProfissao) {
-        if (profissaoRepository.existsById(id)) {
-            Profissao profissao = findById(id);
-            profissao.atualizar(dadosProfissao);
-            profissaoRepository.save(profissao);
-            return true;
-        } else {
-            return false;
-        }
+
+    public Profissao update(Integer id, ProfissaoResquestDTO dadosProfissao) {
+        Profissao profissao = findById(id);
+        profissao.atualizar(dadosProfissao);
+
+        return profissaoRepository.save(profissao);
     }
 
     @Transactional
