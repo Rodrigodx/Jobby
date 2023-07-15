@@ -36,7 +36,7 @@ public class ProfissaoService {
 
 
     @Transactional
-    public Profissao update(Integer id, Profissao dadosProfissao) {
+    public Profissao update(Integer id, ProfissaoResquestDTO dadosProfissao) {
         Profissao profissao = findById(id);
         profissao.atualizar(dadosProfissao);
 
