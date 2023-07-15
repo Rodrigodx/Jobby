@@ -1,6 +1,7 @@
 package com.grupo01.jobby.services;
 
 import com.grupo01.jobby.model.cadastro.Profissao;
+import com.grupo01.jobby.model.cadastro.exception.EntityNotFoundException;
 import com.grupo01.jobby.repositories.ProfissaoRepository;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
@@ -24,7 +25,7 @@ public class ProfissaoService {
     }
 
     public Profissao findById(Integer id){
-        return profissaoRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Profissão com id = " + id + " não foi cadastrada."));
+        return profissaoRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Profissão com id = " + id + " não foi cadastrada."));
     }
 
 
