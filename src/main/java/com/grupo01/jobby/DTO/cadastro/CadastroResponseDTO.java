@@ -1,5 +1,6 @@
-package com.grupo01.jobby.DTO;
+package com.grupo01.jobby.DTO.cadastro;
 
+import com.grupo01.jobby.DTO.endereco.EnderecoResponseDTO;
 import com.grupo01.jobby.model.cadastro.*;
 import com.grupo01.jobby.model.cadastro.enums.SexoEnum;
 import lombok.Data;
@@ -8,7 +9,7 @@ import lombok.Data;
 import java.util.List;
 
 @Data
-public class CadastroDTO {
+public class CadastroResponseDTO {
 
 
     private Integer id;
@@ -27,7 +28,7 @@ public class CadastroDTO {
     private Celular celularProfissional;
 
 
-    private Endereco endereco;
+    private EnderecoResponseDTO endereco;
 
 
     private Profissao profissao;
