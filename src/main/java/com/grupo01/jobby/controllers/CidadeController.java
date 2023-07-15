@@ -16,6 +16,7 @@ public class CidadeController {
 
     @PostMapping
     public ResponseEntity<Cidade> save(@RequestBody Cidade cidade) {
+
         return new ResponseEntity<>(cidadeService.save(cidade), HttpStatus.CREATED);
     }
 

@@ -6,6 +6,7 @@ import com.grupo01.jobby.repositories.CidadeRepository;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.BeanUtils;
+import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -25,21 +26,30 @@ public class CidadeService {
 
     @Transactional
     public Cidade buscar(Integer id) {
-        return cidadeRepository.getById(id);
+        Cidade cidade = new Cidade();
+        Optional<Cidade> cidadeOptional = cidadeRepository.findById(id);
+        if (cidadeOptional.isPresent()) {
+            BeanUtils.copyProperties(cidadeOptional.get(), cidade);
+            return cidade;
+        } else {
+            return cidade;
+        }
+
     }
 
     @Transactional
     public Boolean delete(Integer id) {
-        Optional<Cidade> cidadeOptional = Optional.ofNullable(cidadeRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Cidade com id = " + id + " não foi cadastrado.")));
-        if (cidadeOptional.isEmpty()) {
-            return false;
-
-        } else {
+        Optional<Cidade> cidadeOptional = cidadeRepository.findById(id);
+        if (cidadeOptional.isPresent()) {
             Cidade cidade = new Cidade();
             BeanUtils.copyProperties(cidadeOptional.get(), cidade);
 
             cidadeRepository.delete(cidade);
             return true;
+
+        } else {
+            return false;
+
         }
     }
 }
