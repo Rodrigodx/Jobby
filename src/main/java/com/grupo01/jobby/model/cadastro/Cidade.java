@@ -5,17 +5,13 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import lombok.Data;
-
 @Entity
 @Data
-public class Profissao {
-
+public class Cidade {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
-    private String name;
-
-    public void atualizar(Profissao dadosProfissao) {
-        this.name = dadosProfissao.getName();
-    }
+    int id;
+    String nome;
+    String estado;
+    String sigla;
 }
