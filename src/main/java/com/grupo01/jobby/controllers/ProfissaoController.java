@@ -1,7 +1,9 @@
 package com.grupo01.jobby.controllers;
 
+import com.grupo01.jobby.DTO.profissao.ProfissaoResquestDTO;
 import com.grupo01.jobby.model.cadastro.Profissao;
 import com.grupo01.jobby.services.ProfissaoService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,8 +19,8 @@ public class ProfissaoController {
     private final ProfissaoService profissaoService;
 
     @PostMapping
-    public ResponseEntity<Profissao> save(@RequestBody Profissao profissao){
-        return new ResponseEntity<>(profissaoService.save(profissao), HttpStatus.CREATED);
+    public ResponseEntity<Profissao> save(@Valid @RequestBody ProfissaoResquestDTO dados){
+        return new ResponseEntity<>(profissaoService.save(dados), HttpStatus.CREATED);
     }
 
     @GetMapping
