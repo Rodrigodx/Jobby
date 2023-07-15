@@ -26,4 +26,10 @@ public class ProfissaoController {
         return new ResponseEntity<>(profissaoService.findAll(), HttpStatus.OK);
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<Profissao> findById(@PathVariable Integer id){
+        return new ResponseEntity<>(profissaoService.findById(id), HttpStatus.OK);
+    }
+
+
 }

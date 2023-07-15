@@ -22,4 +22,8 @@ public class ProfissaoService {
     public List<Profissao> findAll(){
         return profissaoRepository.findAll();
     }
+
+    public Profissao findById(Integer id){
+        return profissaoRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Profissão com id = " + id + " não foi cadastrada."));
+    }
 }
