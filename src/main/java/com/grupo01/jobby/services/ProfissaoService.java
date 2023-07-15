@@ -18,7 +18,7 @@ public class ProfissaoService {
     private final ProfissaoRepository profissaoRepository;
 
     @Transactional
-    public Profissao save (ProfissaoResquestDTO dados){
+    public Profissao save(ProfissaoResquestDTO dados) {
         Profissao profissao = new Profissao();
         BeanUtils.copyProperties(dados, profissao);
 
@@ -26,21 +26,25 @@ public class ProfissaoService {
     }
 
 
-    public List<Profissao> findAll(){
+    public List<Profissao> findAll() {
         return profissaoRepository.findAll();
     }
 
-    public Profissao findById(Integer id){
+    public Profissao findById(Integer id) {
         return profissaoRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Profissão com id = " + id + " não foi cadastrada."));
     }
 
 
     @Transactional
-    public Profissao update(Integer id, Profissao dadosProfissao) {
-        Profissao profissao = findById(id);
-        profissao.atualizar(dadosProfissao);
-
-        return profissaoRepository.save(profissao);
+    public Boolean update(Integer id, Profissao dadosProfissao) {
+        if (profissaoRepository.existsById(id)) {
+            Profissao profissao = findById(id);
+            profissao.atualizar(dadosProfissao);
+            profissaoRepository.save(profissao);
+            return true;
+        } else {
+            return false;
+        }
     }
 
     @Transactional
