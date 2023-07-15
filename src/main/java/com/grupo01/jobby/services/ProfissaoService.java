@@ -9,6 +9,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.BeanUtils;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.HttpStatusCode;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -46,13 +48,12 @@ public class ProfissaoService {
     }
 
     @Transactional
-    public boolean delete(Integer id) {
-        if (profissaoRepository.existsById(id)) {
-            profissaoRepository.deleteById(id);
-
-            return true;
+    public ResponseEntity<?> delete(Integer id) {
+        if (!profissaoRepository.existsById(id)) {
+            throw new EntityNotFoundException("Não foi possível excluir. Id = " + " inexistente.");
         }
 
-        return false;
+        profissaoRepository.deleteById(id);
+        return ResponseEntity.noContent().build();
     }
 }

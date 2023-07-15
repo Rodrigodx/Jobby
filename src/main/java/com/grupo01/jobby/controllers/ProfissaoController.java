@@ -44,8 +44,8 @@ public class ProfissaoController {
 
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Boolean> delete(@PathVariable Integer id) {
-        return new ResponseEntity<>(profissaoService.delete(id), HttpStatus.NO_CONTENT);
+    public ResponseEntity<?> delete(@PathVariable Integer id) {
+        return profissaoService.delete(id);
     }
 
 }
