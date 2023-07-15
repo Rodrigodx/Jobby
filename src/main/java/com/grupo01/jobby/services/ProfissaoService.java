@@ -35,4 +35,15 @@ public class ProfissaoService {
 
         return profissaoRepository.save(profissao);
     }
+
+    @Transactional
+    public boolean delete(Integer id) {
+        if (profissaoRepository.existsById(id)) {
+            profissaoRepository.deleteById(id);
+
+            return true;
+        }
+
+        return false;
+    }
 }

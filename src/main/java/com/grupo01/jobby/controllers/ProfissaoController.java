@@ -37,4 +37,10 @@ public class ProfissaoController {
         return new ResponseEntity<>(profissaoService.update(id, dadosProfissao), HttpStatus.OK);
     }
 
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Boolean> delete(@PathVariable Integer id) {
+        return new ResponseEntity<>(profissaoService.delete(id), HttpStatus.NO_CONTENT);
+    }
+
 }
