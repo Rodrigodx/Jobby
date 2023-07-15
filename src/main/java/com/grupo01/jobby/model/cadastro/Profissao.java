@@ -15,4 +15,7 @@ public class Profissao {
     private Integer id;
     private String name;
 
+    public void atualizar(Profissao dadosProfissao) {
+        this.name = dadosProfissao.getName();
+    }
 }
