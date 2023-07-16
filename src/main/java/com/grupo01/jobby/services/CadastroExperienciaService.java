@@ -9,6 +9,9 @@ import com.grupo01.jobby.repositories.ProfissaoRepository;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -30,8 +33,8 @@ public class CadastroExperienciaService {
         return cadastroExperienciaRepository.save(cadastroExperiencia);
     }
 
-    public List<CadastroExperiencia> findAll() {
-        return cadastroExperienciaRepository.findAll();
+    public Page<CadastroExperiencia> findAll(Pageable page) {
+        return cadastroExperienciaRepository.findAll(page);
     }
 
     public CadastroExperiencia findById(Long id) {
