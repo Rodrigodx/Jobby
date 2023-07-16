@@ -1,19 +1,19 @@
-package com.grupo01.jobby.model.cadastro;
+package com.grupo01.jobby.DTO.endereco;
 
+import com.grupo01.jobby.model.cadastro.Cidade;
 import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
 import lombok.Data;
 
+
 @Data
-@Embeddable
-public class Endereco {
+public class EnderecoResponseDTO {
 
     private String cep;
     private String logradouro;
     private String numero;
     private String complemento;
     private String bairro;
-    @Column(name = "id_cidade")
-    private Integer cidade;
+    private Cidade cidade;
 
 }
