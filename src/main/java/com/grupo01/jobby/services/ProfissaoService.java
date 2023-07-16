@@ -1,11 +1,13 @@
 package com.grupo01.jobby.services;
 
+import com.grupo01.jobby.DTO.profissao.ProfissaoResponseDTO;
 import com.grupo01.jobby.DTO.profissao.ProfissaoResquestDTO;
 import com.grupo01.jobby.model.cadastro.Profissao;
 import com.grupo01.jobby.model.cadastro.exception.EntityNotFoundException;
 import com.grupo01.jobby.repositories.ProfissaoRepository;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.BeanUtils;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -19,13 +21,14 @@ import java.util.List;
 public class ProfissaoService {
 
     private final ProfissaoRepository profissaoRepository;
+    private final ModelMapper modelMapper;
 
     @Transactional
-    public Profissao save (ProfissaoResquestDTO dados){
-        Profissao profissao = new Profissao();
-        BeanUtils.copyProperties(dados, profissao);
+    public ProfissaoResponseDTO save (ProfissaoResquestDTO dados){
+        Profissao profissao = modelMapper.map(dados, Profissao.class);
+        profissaoRepository.save(profissao);
 
-        return profissaoRepository.save(profissao);
+        return modelMapper.map(profissao, ProfissaoResponseDTO.class);
     }
 
 

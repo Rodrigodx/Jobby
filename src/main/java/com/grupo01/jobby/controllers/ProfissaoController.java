@@ -1,5 +1,6 @@
 package com.grupo01.jobby.controllers;
 
+import com.grupo01.jobby.DTO.profissao.ProfissaoResponseDTO;
 import com.grupo01.jobby.DTO.profissao.ProfissaoResquestDTO;
 import com.grupo01.jobby.model.cadastro.Profissao;
 import com.grupo01.jobby.services.ProfissaoService;
@@ -22,7 +23,7 @@ public class ProfissaoController {
     private final ProfissaoService profissaoService;
 
     @PostMapping
-    public ResponseEntity<Profissao> save(@Valid @RequestBody ProfissaoResquestDTO dados){
+    public ResponseEntity<ProfissaoResponseDTO> save(@Valid @RequestBody ProfissaoResquestDTO dados){
         return new ResponseEntity<>(profissaoService.save(dados), HttpStatus.CREATED);
     }
 
