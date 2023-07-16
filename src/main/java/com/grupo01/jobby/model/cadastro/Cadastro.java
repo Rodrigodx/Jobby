@@ -1,10 +1,13 @@
 package com.grupo01.jobby.model.cadastro;
 
+import com.grupo01.jobby.DTO.cadastro.CadastroResquestDTO;
+import com.grupo01.jobby.DTO.profissao.ProfissaoResquestDTO;
 import com.grupo01.jobby.model.cadastro.enums.SexoEnum;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Data;
 import lombok.Setter;
+import org.springframework.beans.BeanUtils;
 
 import java.util.List;
 
@@ -43,13 +46,15 @@ public class Cadastro {
     @Embedded
     private Endereco endereco;
 
-    @Column(name = "id_profissao")
-    private Integer idProfissao;
+    /*@OneToOne
+    @JoinColumn(name = "id_profissao")*/
+    private Integer id_Profissao;
 
-    @ElementCollection
-    @CollectionTable(name="tab_cad_habilidade",
-            joinColumns=@JoinColumn(name = "cad_id"))
-    @Column(name="nm_habil")
+    @Column(name = "habil")
     private List<String> habilidades;
+
+    public void atualizar(CadastroResquestDTO dadosCadastro) {
+        BeanUtils.copyProperties(this, dadosCadastro);
+    }
 
 }
