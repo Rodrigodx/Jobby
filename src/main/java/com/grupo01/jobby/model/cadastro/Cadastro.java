@@ -20,6 +20,8 @@ public class Cadastro {
     @Column(length = 60, nullable = false)
     private String nome;
 
+    private String cpf;
+
     @Enumerated(EnumType.STRING)
     private SexoEnum sexoEnum;
 
