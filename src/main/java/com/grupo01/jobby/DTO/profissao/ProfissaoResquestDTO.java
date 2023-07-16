@@ -13,7 +13,6 @@ import lombok.NoArgsConstructor;
 public class ProfissaoResquestDTO {
 
     @NotBlank
-    @Min(3)
     private String name;
 
 }

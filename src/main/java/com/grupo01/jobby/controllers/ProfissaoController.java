@@ -28,7 +28,7 @@ public class ProfissaoController {
     }
 
     @GetMapping
-    public ResponseEntity<Page<Profissao>> findAll(@PageableDefault(size = 5, sort = { "name" }) Pageable page){
+    public ResponseEntity<Page<Profissao>> findAll(@PageableDefault(size = 5, sort = { "id" }) Pageable page){
         return new ResponseEntity<>(profissaoService.findAll(page), HttpStatus.OK);
     }
 
