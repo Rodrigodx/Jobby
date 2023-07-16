@@ -29,10 +29,6 @@ public class CadastroDTO {
 
     private Endereco endereco;
 
-
-    private Profissao profissao;
-
-
     private List<String> habilidades;
 
 }

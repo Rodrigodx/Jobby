@@ -5,16 +5,12 @@ import com.grupo01.jobby.model.cadastro.CadastroExperiencia;
 import com.grupo01.jobby.model.cadastro.Profissao;
 import com.grupo01.jobby.model.cadastro.exception.EntityNotFoundException;
 import com.grupo01.jobby.repositories.CadastroExperienciaRepository;
-import com.grupo01.jobby.repositories.ProfissaoRepository;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 @Service
 @RequiredArgsConstructor

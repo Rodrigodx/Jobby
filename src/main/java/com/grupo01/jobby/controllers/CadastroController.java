@@ -3,6 +3,9 @@ package com.grupo01.jobby.controllers;
 import com.grupo01.jobby.model.cadastro.Cadastro;
 import com.grupo01.jobby.services.CadastroService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,8 +24,8 @@ public class CadastroController {
 
 
     @GetMapping
-    public ResponseEntity<List<Cadastro>> findAll(){
-        return ResponseEntity.ok(cadastroService.findAll());
+    public ResponseEntity<Page<Cadastro>> findAll(@PageableDefault(size = 5, sort = { "id" }) Pageable page){
+        return ResponseEntity.ok(cadastroService.findAll(page));
     }
 
     @PostMapping
