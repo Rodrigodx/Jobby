@@ -16,12 +16,19 @@ public class CadastroExperiencia {
     private Integer id;
     private Double salario;
     private boolean empregoAtual;
+
+    @Column(columnDefinition = "DATE")
     private LocalDate dataContratacao;
+
+    @Column(columnDefinition = "DATE")
     private Date datDesligamento;
 
     @Enumerated(EnumType.STRING)
     private RegimeDeContratacaoENUM regimeDeContratacaoENUM;
 
     private String empresa;
+
+    @ManyToOne(cascade = CascadeType.PERSIST)
+    private Profissao profissao;
 
 }

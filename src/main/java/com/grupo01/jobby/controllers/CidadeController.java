@@ -16,17 +16,16 @@ public class CidadeController {
 
     @PostMapping
     public ResponseEntity<Cidade> save(@RequestBody Cidade cidade) {
-
         return new ResponseEntity<>(cidadeService.save(cidade), HttpStatus.CREATED);
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<Cidade> save(@PathVariable Integer id) {
-        return new ResponseEntity<>(cidadeService.buscar(id), HttpStatus.ACCEPTED);
+    @GetMapping
+    public ResponseEntity<Cidade> findById(@RequestBody Integer id) {
+        return new ResponseEntity<>(cidadeService.buscar(1), HttpStatus.ACCEPTED);
     }
 
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Boolean> delete(@PathVariable Integer id) {
+    @DeleteMapping
+    public ResponseEntity<Cidade> delete(@RequestBody Integer id) {
 
         return new ResponseEntity<>(cidadeService.delete(id), HttpStatus.ACCEPTED);
     }

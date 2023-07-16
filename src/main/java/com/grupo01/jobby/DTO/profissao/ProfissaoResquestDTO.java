@@ -1,5 +1,6 @@
 package com.grupo01.jobby.DTO.profissao;
 
+import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;

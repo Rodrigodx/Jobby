@@ -30,10 +30,6 @@ public class CadastroResponseDTO {
 
     private EnderecoResponseDTO endereco;
 
-
-    private Profissao profissao;
-
-
     private List<String> habilidades;
 
 }

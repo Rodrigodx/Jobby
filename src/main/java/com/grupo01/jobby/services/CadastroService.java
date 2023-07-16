@@ -6,6 +6,9 @@ import jakarta.transaction.Transactional;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.annotation.ReadOnlyProperty;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -17,8 +20,8 @@ public class CadastroService {
     private final CadastroRepository cadastroRepository;
 
     @ReadOnlyProperty
-    public List<Cadastro> findAll(){
-        return cadastroRepository.findAll();
+    public Page<Cadastro> findAll(Pageable page){
+        return cadastroRepository.findAll(page);
     }
 
     @Transactional
