@@ -65,4 +65,8 @@ public class CadastroService {
     public List<Cadastro> candidatosPorSexoEEstado(SexoEnum sexo, String sigla) {
         return cadastroRepository.candidatosPorSexoEEstado(sexo, sigla);
     }
+
+    public List<Cadastro> cadastrosPorProfissao(String nomeProfissao) {
+        return cadastroRepository.cadastrosPorProfissao(nomeProfissao);
+    }
 }

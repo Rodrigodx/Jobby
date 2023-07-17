@@ -14,20 +14,38 @@ public interface CadastroRepository extends JpaRepository<Cadastro, Integer> {
 
    Page<Cadastro> findAll(Pageable page);
 
-   // Consulta que conte a quantidade de profissionais por profissão
-   @Query("SELECT p.name, COUNT(c) FROM Cadastro c JOIN c.Profissao p GROUP BY p.id, p.name")
-   List<Object[]> countCadastroByProfissao();
+   // 4 - Contar quantos candidatos possuem a habilidade JAVA
 
-   // Consulta que devolve cadastros sem habilidades vinculadas
+   // 5 - Consulta que devolve cadastros sem habilidades vinculadas
    @Query("SELECT c FROM Cadastro c WHERE EXISTS (SELECT 1 FROM c.habilidades h)")
    List<Cadastro> buscarCandidatosComHabilidade();
 
+   // 6 - Consulta que devolve candidatos por sexo e estado
+   @Query("SELECT ca FROM Cadastro ca JOIN ca.endereco.cidade ci WHERE ca.sexoEnum = :sexo AND ci.sigla = :sigla")
+   List<Cadastro> candidatosPorSexoEEstado(@Param("sexo") SexoEnum nome, @Param("sigla") String sigla);
 
-   // Consulta que devolve candidatos que estão empregados atualmente
+   // 7 - Agrupar por profissão e contar quantos profissionais que moram na cidade de nome SÃO PAULO
+
+   // 8 - Selecionar candidatos que registram experiências com data de contratação entre 01/01/202 a 31/12/2023
+
+   // 9 - Selecionar candidatos que trabalharam na empresa MICROSOFT
+
+   // 10 Selecionar candidatos que AINDA trabalham na empresa MICROSOFT
+
+   // 11 -Consulta que devolve candidatos que estão empregados atualmente
    @Query("SELECT c FROM Cadastro c JOIN c.experiencias e WHERE e.empregoAtual = true")
    List<Cadastro> candidatosComTrabalho();
 
-   // Consulta que devolve candidatos por sexo e estado
-   @Query("SELECT ca FROM Cadastro ca JOIN ca.endereco.cidade ci WHERE ca.sexoEnum = :sexo AND ci.sigla = :sigla")
-   List<Cadastro> candidatosPorSexoEEstado(@Param("sexo") SexoEnum nome, @Param("sigla") String sigla);
+   // 12 - Criar uma consulta que retorne todos os candidatos e nome da sua profissão correspondentemente
+
+   // 13 - Criar uma consulta que retorne todos os candidatos e nome da sua profissão onde o id da profissão corresponda ao registro ANALISTA DE SISTEMAS
+   @Query("SELECT c, p.name FROM Cadastro c JOIN c.Profissao p WHERE p.name = :nomeProfissao")
+   List<Cadastro> cadastrosPorProfissao(@Param("nomeProfissao") String nomeProfissao);
+
+   // 14 - Consulta que conte a quantidade de profissionais por profissão
+   @Query("SELECT p.name, COUNT(c) FROM Cadastro c JOIN c.Profissao p GROUP BY p.id, p.name")
+   List<Object[]> countCadastroByProfissao();
+
+   // 15 - Criar uma consulta que retorne os candidatos ordenados por profissão e salário máximo de forma decrescente
+
 }

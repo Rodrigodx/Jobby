@@ -54,4 +54,9 @@ public class CadastroController {
             required = true, defaultValue = "") String sigla) {
         return ResponseEntity.ok(cadastroService.candidatosPorSexoEEstado(sexo, sigla));
     }
+
+    @GetMapping("/sexo-e-uf")
+    public List<Cadastro> cadastrosPorProfissao(String nomeProfissao) {
+        return cadastroService.cadastrosPorProfissao(nomeProfissao);
+    }
 }
