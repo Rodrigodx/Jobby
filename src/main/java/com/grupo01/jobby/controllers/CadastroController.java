@@ -12,6 +12,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping(value = "api/cadastros")
 @RequiredArgsConstructor
@@ -30,11 +32,18 @@ public class CadastroController {
         return new ResponseEntity<>(cadastroService.save(dados), HttpStatus.CREATED);
     }
 
-    @DeleteMapping(value = "/id")
-    public ResponseEntity<Boolean> delete(@PathVariable Integer id){
-        cadastroService.delete(id);
-        return ResponseEntity.noContent().build();
+    @GetMapping("/count-profissao")
+    public ResponseEntity<List<Object[]>> contarPorProfissao(){
+        return ResponseEntity.ok(cadastroService.contarPorProfissoes());
     }
 
+    @GetMapping("/com-habilidade")
+    public ResponseEntity<List<Cadastro>> buscarComHabilidade(){
+        return ResponseEntity.ok(cadastroService.buscarComHabilidade());
+    }
 
+    @GetMapping("/trabalhando")
+    public ResponseEntity<List<Cadastro>> candidatosComTrabalho(){
+        return ResponseEntity.ok(cadastroService.candidatosComTrabalho());
+    }
 }

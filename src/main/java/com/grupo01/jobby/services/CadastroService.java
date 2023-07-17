@@ -1,9 +1,11 @@
 package com.grupo01.jobby.services;
 
-import com.grupo01.jobby.model.cadastro.*;
-import com.grupo01.jobby.model.cadastro.exception.EntityNotFoundException;
 import com.grupo01.jobby.DTO.cadastro.CadastroResponseDTO;
 import com.grupo01.jobby.DTO.cadastro.CadastroRequestDTO;
+import com.grupo01.jobby.model.cadastro.Cadastro;
+import com.grupo01.jobby.model.cadastro.CadastroExperiencia;
+import com.grupo01.jobby.model.cadastro.Cidade;
+import com.grupo01.jobby.model.cadastro.Profissao;
 import com.grupo01.jobby.repositories.CadastroRepository;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
@@ -14,7 +16,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-
 
 @Service
 @RequiredArgsConstructor
@@ -29,12 +30,6 @@ public class CadastroService {
     @ReadOnlyProperty
     public Page<Cadastro> findAll(Pageable page){
         return cadastroRepository.findAll(page);
-    }
-
-    @ReadOnlyProperty
-    public Cadastro findById(Integer id){
-        return cadastroRepository.findById(id)
-                .orElseThrow(() -> new EntityNotFoundException("Cadastro com o id: " + id + "não foi encontrado"));
     }
 
     @Transactional
@@ -54,16 +49,15 @@ public class CadastroService {
         return modelMapper.map(cadastro, CadastroResponseDTO.class);
     }
 
-    @Transactional
-    public boolean delete(Integer id) {
-        if (cadastroRepository.existsById(id)) {
-            cadastroRepository.deleteById(id);
-
-            return true;
-        }
-
-        return false;
+    public List<Object[]> contarPorProfissoes() {
+        return cadastroRepository.countCadastroByProfissao();
     }
 
+    public List<Cadastro> buscarComHabilidade() {
+        return cadastroRepository.buscarCandidatosComHabilidade();
+    }
 
+    public List<Cadastro> candidatosComTrabalho() {
+        return cadastroRepository.candidatosComTrabalho();
+    }
 }

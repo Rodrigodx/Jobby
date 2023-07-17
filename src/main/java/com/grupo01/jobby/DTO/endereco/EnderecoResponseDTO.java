@@ -1,5 +1,6 @@
 package com.grupo01.jobby.DTO.endereco;
 
+import com.grupo01.jobby.DTO.cidade.CidadeResponseDTO;
 import com.grupo01.jobby.model.cadastro.Cidade;
 import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
@@ -14,6 +15,6 @@ public class EnderecoResponseDTO {
     private String numero;
     private String complemento;
     private String bairro;
-    private Cidade cidade;
+    private CidadeResponseDTO cidade;
 
 }
