@@ -41,4 +41,9 @@ public class CadastroController {
     public ResponseEntity<List<Cadastro>> buscarComHabilidade(){
         return ResponseEntity.ok(cadastroService.buscarComHabilidade());
     }
+
+    @GetMapping("/trabalhando")
+    public ResponseEntity<List<Cadastro>> candidatosComTrabalho(){
+        return ResponseEntity.ok(cadastroService.candidatosComTrabalho());
+    }
 }

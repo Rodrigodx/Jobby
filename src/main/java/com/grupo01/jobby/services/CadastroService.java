@@ -56,4 +56,8 @@ public class CadastroService {
     public List<Cadastro> buscarComHabilidade() {
         return cadastroRepository.buscarCandidatosComHabilidade();
     }
+
+    public List<Cadastro> candidatosComTrabalho() {
+        return cadastroRepository.candidatosComTrabalho();
+    }
 }

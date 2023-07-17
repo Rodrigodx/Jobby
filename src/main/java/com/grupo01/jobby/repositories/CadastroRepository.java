@@ -21,6 +21,8 @@ public interface CadastroRepository extends JpaRepository<Cadastro, Integer> {
    List<Cadastro> buscarCandidatosComHabilidade();
 
 
-
+   // Consulta que devolve candidatos que estão empregados atualmente
+   @Query("SELECT c FROM Cadastro c JOIN c.experiencias e WHERE e.empregoAtual = true")
+   List<Cadastro> candidatosComTrabalho();
 
 }
