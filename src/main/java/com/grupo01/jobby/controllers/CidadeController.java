@@ -25,7 +25,7 @@ public class CidadeController {
     }
 
     @DeleteMapping
-    public ResponseEntity<Cidade> delete(@RequestBody Integer id) {
+    public ResponseEntity<Boolean> delete(@RequestBody Integer id) {
 
         return new ResponseEntity<>(cidadeService.delete(id), HttpStatus.ACCEPTED);
     }
