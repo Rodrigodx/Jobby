@@ -8,10 +8,11 @@ import lombok.Data;
 @Entity
 @Data
 public class Cidade {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    int id;
-    String nome;
-    String estado;
-    String sigla;
+    private Integer id;
+    private String nome;
+    private String estado;
+    private String sigla;
 }

@@ -1,5 +1,7 @@
 package com.grupo01.jobby.controllers;
 
+import com.grupo01.jobby.DTO.cadastro.CadastroResponseDTO;
+import com.grupo01.jobby.DTO.cadastro.CadastroRequestDTO;
 import com.grupo01.jobby.model.cadastro.Cadastro;
 import com.grupo01.jobby.services.CadastroService;
 import lombok.RequiredArgsConstructor;
@@ -8,12 +10,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-
-import java.util.List;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping(value = "api/cadastros")
@@ -29,8 +26,8 @@ public class CadastroController {
     }
 
     @PostMapping
-    public ResponseEntity<Cadastro> save(Cadastro cadastro){
-        return new ResponseEntity<>(cadastroService.save(cadastro), HttpStatus.CREATED);
+    public ResponseEntity<CadastroResponseDTO> save(@RequestBody CadastroRequestDTO dados){
+        return new ResponseEntity<>(cadastroService.save(dados), HttpStatus.CREATED);
     }
 
 }

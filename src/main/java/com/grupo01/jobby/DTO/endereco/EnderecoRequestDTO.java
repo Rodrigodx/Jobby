@@ -1,9 +1,12 @@
 package com.grupo01.jobby.DTO.endereco;
 
-import com.grupo01.jobby.model.cadastro.Cidade;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 
+@AllArgsConstructor
+@NoArgsConstructor
 @Data
 public class EnderecoRequestDTO {
 
@@ -12,6 +15,6 @@ public class EnderecoRequestDTO {
     private String numero;
     private String complemento;
     private String bairro;
-    private Cidade cidade;
+    private Integer idCidade;
 
 }
