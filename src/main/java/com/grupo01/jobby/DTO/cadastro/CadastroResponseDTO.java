@@ -21,12 +21,11 @@ public class CadastroResponseDTO {
     private String cpf;
     private LocalDate dataNascimento;
     private SexoEnum sexoEnum;
-    private PretencaoSalarial pretencaoSalarial;
+    private PretensaoSalarial pretencaoSalarial;
     private CelularDto celularPessoal;
     private CelularDto celularProfissional;
     private EnderecoResponseDTO endereco;
     private ProfissaoResponseDTO profissao;
     private List<CadastroExperiencia> experiencias;
-    private List<String> habilidades;
 
 }

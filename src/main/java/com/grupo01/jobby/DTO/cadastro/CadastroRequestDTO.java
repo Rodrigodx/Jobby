@@ -2,10 +2,7 @@ package com.grupo01.jobby.DTO.cadastro;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.grupo01.jobby.DTO.endereco.EnderecoRequestDTO;
-import com.grupo01.jobby.DTO.experiencia.CadastroExperienciaDTO;
 import com.grupo01.jobby.DTO.experiencia.CadastroExperienciaRequestDTO;
-import com.grupo01.jobby.model.cadastro.Celular;
-import com.grupo01.jobby.model.cadastro.Endereco;
 import com.grupo01.jobby.model.cadastro.enums.SexoEnum;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;

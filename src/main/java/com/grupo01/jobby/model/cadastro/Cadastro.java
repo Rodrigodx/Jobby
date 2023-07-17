@@ -1,5 +1,7 @@
 package com.grupo01.jobby.model.cadastro;
 
+import com.grupo01.jobby.DTO.cadastro.CadastroRequestDTO;
+import com.grupo01.jobby.DTO.profissao.ProfissaoResquestDTO;
 import com.grupo01.jobby.model.cadastro.enums.SexoEnum;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
@@ -30,17 +32,18 @@ public class Cadastro {
     private SexoEnum sexoEnum;
 
     @Embedded
-    private PretencaoSalarial pretencaoSalarial;
+    private PretensaoSalarial pretensaoSalarial;
 
     @Embedded
+
     private Celular celularPessoal;
 
     @Embedded
     @AttributeOverrides({
             @AttributeOverride(name="numero",
-                    column=@Column(name="cel_num_pess")),
+                    column=@Column(name="cel_num_prof")),
             @AttributeOverride(name="whatsapp",
-                    column=@Column(name="cel_is_whats_pess"))
+                    column=@Column(name="cel_is_whats_prof"))
     })
     private Celular celularProfissional;
 

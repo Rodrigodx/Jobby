@@ -23,10 +23,16 @@ public class CadastroExperienciaService {
     @Transactional
     public CadastroExperiencia save(CadastroExperienciaDTO dados) {
         Profissao profissao = profissaoService.findById(dados.getProfissaoId());
-        CadastroExperiencia cadastroExperiencia = modelMapper.map(dados, CadastroExperiencia.class);
-        cadastroExperiencia.setProfissao(profissao);
+        CadastroExperiencia cadastroExperiencia1 = new CadastroExperiencia();
+        cadastroExperiencia1.setSalario(dados.getSalario());
+        cadastroExperiencia1.setEmpregoAtual(dados.getEmpregoAtual());
+        cadastroExperiencia1.setDataContratacao(dados.getDataContratacao());
+        cadastroExperiencia1.setDatDesligamento(dados.getDataDesligamento());
+        cadastroExperiencia1.setRegimeDeContratacaoENUM(dados.getRegimeDeContratacaoENUM());
+        cadastroExperiencia1.setEmpresa(dados.getEmpresa());
+        cadastroExperiencia1.setProfissao(profissao);
 
-        return cadastroExperienciaRepository.save(cadastroExperiencia);
+        return cadastroExperienciaRepository.save(cadastroExperiencia1);
     }
 
     public Page<CadastroExperiencia> findAll(Pageable page) {
