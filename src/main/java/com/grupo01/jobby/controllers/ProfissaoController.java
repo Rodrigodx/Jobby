@@ -3,6 +3,7 @@ package com.grupo01.jobby.controllers;
 import com.grupo01.jobby.DTO.profissao.ProfissaoResponseDTO;
 import com.grupo01.jobby.DTO.profissao.ProfissaoResquestDTO;
 import com.grupo01.jobby.model.cadastro.Profissao;
+import com.grupo01.jobby.services.CidadeService;
 import com.grupo01.jobby.services.ProfissaoService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -21,6 +22,7 @@ import java.util.List;
 public class ProfissaoController {
 
     private final ProfissaoService profissaoService;
+    private final CidadeService cidadeService;
 
     @PostMapping
     public ResponseEntity<ProfissaoResponseDTO> save(@Valid @RequestBody ProfissaoResquestDTO dados){

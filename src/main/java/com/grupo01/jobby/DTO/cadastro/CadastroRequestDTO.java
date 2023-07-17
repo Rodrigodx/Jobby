@@ -34,7 +34,6 @@ public class CadastroRequestDTO {
     @NotNull
     private CelularDto celularPessoal;
 
-    @NotNull
     private CelularDto celularProfissional;;
 
     @NotBlank
@@ -49,6 +48,8 @@ public class CadastroRequestDTO {
 
     @NotEmpty
     private List<CadastroExperienciaRequestDTO> experiencias = new ArrayList<>();
+
+    private List<Integer> habilidades = new ArrayList<>();
 
     @NotNull
     private PretensaoSalarialDto pretensaoSalarial;

@@ -50,6 +50,8 @@ public class Cadastro {
     @Embedded
     private Endereco endereco;
 
+    private String email;
+
     @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "id_profissao")
     private Profissao Profissao;

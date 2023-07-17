@@ -6,6 +6,7 @@ import com.grupo01.jobby.model.cadastro.Cadastro;
 import com.grupo01.jobby.model.cadastro.CadastroExperiencia;
 import com.grupo01.jobby.model.cadastro.Cidade;
 import com.grupo01.jobby.model.cadastro.Profissao;
+import com.grupo01.jobby.model.cadastro.enums.SexoEnum;
 import com.grupo01.jobby.repositories.CadastroRepository;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
@@ -13,8 +14,10 @@ import org.modelmapper.ModelMapper;
 import org.springframework.data.annotation.ReadOnlyProperty;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Service
@@ -59,5 +62,35 @@ public class CadastroService {
 
     public List<Cadastro> candidatosComTrabalho() {
         return cadastroRepository.candidatosComTrabalho();
+    }
+
+    public List<Cadastro> candidatosPorSexoEEstado(SexoEnum sexo, String sigla) {
+        return cadastroRepository.candidatosPorSexoEEstado(sexo, sigla);
+    }
+
+    public List<Cadastro> cadastrosPorProfissao(String nomeProfissao) {
+        return cadastroRepository.cadastrosPorProfissao(nomeProfissao);
+    }
+
+    public List<Cadastro> buscarCandidatosOrdenadosPorProfissaoESalario() {
+        return cadastroRepository.buscarCandidatosOrdenadosPorProfissaoESalario();
+    }
+
+    public Long contarCandidatosComHabilidade(String nomeHabilidade) {
+        return cadastroRepository.contarCandidatosComHabilidade(nomeHabilidade);
+    }
+
+    public List<Cadastro> candidatosComExperienciaPorData(LocalDate dataInicio, LocalDate dataFim) {
+        return cadastroRepository.candidatosComExperienciaPorData(dataInicio, dataFim);
+    }
+
+    public Long contarProfissionaisPorCidade(@Param("nomeCidade") String nomeCidade) {
+        return cadastroRepository.contarProfissionaisPorCidade(nomeCidade);
+    }
+    public List<Cadastro> candidatoPorEmpresa(@Param("nome") String nome) {
+        return cadastroRepository.candidatoPorEmpresa(nome);
+    }
+    public List<Cadastro> candidatoPorExperienciaAtual(@Param("nome") String nome) {
+        return cadastroRepository.candidatoPorEmpresa(nome);
     }
 }
