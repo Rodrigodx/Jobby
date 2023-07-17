@@ -1,11 +1,7 @@
 package com.grupo01.jobby.controllers;
 
-<<<<<<< HEAD
-import com.grupo01.jobby.DTO.cadastro.CadastroResquestDTO;
-=======
 import com.grupo01.jobby.DTO.cadastro.CadastroResponseDTO;
 import com.grupo01.jobby.DTO.cadastro.CadastroRequestDTO;
->>>>>>> 6ed52a91f2add44458433cfd205b1b0f86ede160
 import com.grupo01.jobby.model.cadastro.Cadastro;
 import com.grupo01.jobby.services.CadastroService;
 import lombok.RequiredArgsConstructor;
@@ -15,10 +11,6 @@ import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-<<<<<<< HEAD
-
-=======
->>>>>>> 6ed52a91f2add44458433cfd205b1b0f86ede160
 
 @RestController
 @RequestMapping(value = "api/cadastros")
@@ -36,10 +28,6 @@ public class CadastroController {
     @PostMapping
     public ResponseEntity<CadastroResponseDTO> save(@RequestBody CadastroRequestDTO dados){
         return new ResponseEntity<>(cadastroService.save(dados), HttpStatus.CREATED);
-    }
-    @PutMapping(value = "/id")
-    public ResponseEntity<Cadastro> update(@PathVariable Integer id, @RequestBody CadastroResquestDTO cadastro){
-        return ResponseEntity.ok(cadastroService.update(id, cadastro));
     }
 
     @DeleteMapping(value = "/id")

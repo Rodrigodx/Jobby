@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import com.grupo01.jobby.DTO.endereco.EnderecoRequestDTO;
 import com.grupo01.jobby.DTO.experiencia.CadastroExperienciaDTO;
 import com.grupo01.jobby.DTO.experiencia.CadastroExperienciaRequestDTO;
+import com.grupo01.jobby.DTO.habilidade.HabilidadeResquestDTO;
 import com.grupo01.jobby.model.cadastro.Celular;
 import com.grupo01.jobby.model.cadastro.Endereco;
 import com.grupo01.jobby.model.cadastro.enums.SexoEnum;
@@ -52,6 +53,8 @@ public class CadastroRequestDTO {
 
     @NotEmpty
     private List<CadastroExperienciaRequestDTO> experiencias = new ArrayList<>();
+
+    private List<HabilidadeResquestDTO> habilidades = new ArrayList<>();
 
     @NotNull
     private PretensaoSalarialDto pretensaoSalarial;

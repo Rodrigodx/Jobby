@@ -1,5 +1,7 @@
 package com.grupo01.jobby.model.cadastro;
 
+import com.grupo01.jobby.DTO.cadastro.CadastroRequestDTO;
+import com.grupo01.jobby.DTO.profissao.ProfissaoResquestDTO;
 import com.grupo01.jobby.model.cadastro.enums.SexoEnum;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
@@ -30,7 +32,7 @@ public class Cadastro {
     private SexoEnum sexoEnum;
 
     @Embedded
-    private PretencaoSalarial pretencaoSalarial;
+    private PretensaoSalarial pretensaoSalarial;
 
     @Embedded
     private Celular celularPessoal;
@@ -55,11 +57,9 @@ public class Cadastro {
     @JoinTable(name = "candidato_experiencia")
     private List<CadastroExperiencia> experiencias;
 
+    @OneToMany
+    @JoinTable(name = "candidato_habilidades")
+    private List<Habilidade> habilidades;
 
-    @ElementCollection
-    @CollectionTable(name="tab_cad_habilidade",
-            joinColumns=@JoinColumn(name = "cad_id"))
-    @Column(name="nm_habil")
-    private List<String> habilidades;
 
 }
