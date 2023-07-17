@@ -58,5 +58,8 @@ public class Cadastro {
     @JoinTable(name = "candidato_experiencia")
     private List<CadastroExperiencia> experiencias;
 
+    @ManyToMany
+    @JoinTable(name = "candidato_habilidade")
+    private List<Habilidade> habilidades;
 
 }
