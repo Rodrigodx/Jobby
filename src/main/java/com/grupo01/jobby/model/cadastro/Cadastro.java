@@ -47,6 +47,8 @@ public class Cadastro {
     @Embedded
     private Endereco endereco;
 
+    private String email;
+
     @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "id_profissao")
     private Profissao Profissao;
@@ -55,11 +57,8 @@ public class Cadastro {
     @JoinTable(name = "candidato_experiencia")
     private List<CadastroExperiencia> experiencias;
 
-
-    @ElementCollection
-    @CollectionTable(name="tab_cad_habilidade",
-            joinColumns=@JoinColumn(name = "cad_id"))
-    @Column(name="nm_habil")
-    private List<String> habilidades;
+    @ManyToMany
+    @JoinTable(name = "candidato_habilidade")
+    private List<Habilidade> habilidades;
 
 }
