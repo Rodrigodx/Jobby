@@ -9,6 +9,7 @@ import lombok.Data;
 import lombok.Setter;
 import org.springframework.beans.BeanUtils;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Entity
@@ -24,6 +25,9 @@ public class Cadastro {
     private String nome;
 
     private String cpf;
+
+    @Column(columnDefinition = "DATE")
+    private LocalDate dataNascimento;
 
     @Enumerated(EnumType.STRING)
     private SexoEnum sexoEnum;
@@ -46,9 +50,20 @@ public class Cadastro {
     @Embedded
     private Endereco endereco;
 
+<<<<<<< HEAD
     /*@OneToOne
     @JoinColumn(name = "id_profissao")*/
     private Integer id_Profissao;
+=======
+    @ManyToOne(cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "id_profissao")
+    private Profissao Profissao;
+
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinTable(name = "candidato_experiencia")
+    private List<CadastroExperiencia> experiencias;
+
+>>>>>>> 6ed52a91f2add44458433cfd205b1b0f86ede160
 
     @Column(name = "habil")
     private List<String> habilidades;

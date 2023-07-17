@@ -26,15 +26,7 @@ public class CidadeService {
 
     @Transactional
     public Cidade buscar(Integer id) {
-        Cidade cidade = new Cidade();
-        Optional<Cidade> cidadeOptional = cidadeRepository.findById(id);
-        if (cidadeOptional.isPresent()) {
-            BeanUtils.copyProperties(cidadeOptional.get(), cidade);
-            return cidade;
-        } else {
-            return cidade;
-        }
-
+      return cidadeRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("sem cidade"));
     }
 
     @Transactional

@@ -1,9 +1,15 @@
 package com.grupo01.jobby.model.cadastro;
 
-import jakarta.persistence.Column;
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Embeddable;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
+@AllArgsConstructor
+@NoArgsConstructor
 @Data
 @Embeddable
 public class Endereco {
@@ -13,7 +19,9 @@ public class Endereco {
     private String numero;
     private String complemento;
     private String bairro;
-    @Column(name = "id_cidade")
-    private Integer cidade;
+
+    @JoinColumn(name = "id_cidade")
+    @ManyToOne(cascade = CascadeType.ALL)
+    private Cidade cidade;
 
 }

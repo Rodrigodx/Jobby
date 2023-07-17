@@ -1,11 +1,21 @@
 package com.grupo01.jobby.services;
 
+<<<<<<< HEAD
 import com.grupo01.jobby.DTO.cadastro.CadastroResquestDTO;
 import com.grupo01.jobby.model.cadastro.Cadastro;
 import com.grupo01.jobby.model.cadastro.exception.EntityNotFoundException;
+=======
+import com.grupo01.jobby.DTO.cadastro.CadastroResponseDTO;
+import com.grupo01.jobby.DTO.cadastro.CadastroRequestDTO;
+import com.grupo01.jobby.model.cadastro.Cadastro;
+import com.grupo01.jobby.model.cadastro.CadastroExperiencia;
+import com.grupo01.jobby.model.cadastro.Cidade;
+import com.grupo01.jobby.model.cadastro.Profissao;
+>>>>>>> 6ed52a91f2add44458433cfd205b1b0f86ede160
 import com.grupo01.jobby.repositories.CadastroRepository;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
+import org.modelmapper.ModelMapper;
 import org.springframework.data.annotation.ReadOnlyProperty;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -17,6 +27,10 @@ import org.springframework.stereotype.Service;
 public class CadastroService {
 
     private final CadastroRepository cadastroRepository;
+    private final CidadeService cidadeService;
+    private final ProfissaoService profissaoService;
+    private final CadastroExperienciaService cadastroExperienciaService;
+    private final ModelMapper modelMapper;
 
     @ReadOnlyProperty
     public Page<Cadastro> findAll(Pageable page){
@@ -30,8 +44,20 @@ public class CadastroService {
     }
 
     @Transactional
-    public Cadastro save(Cadastro cadastro){
-        return cadastroRepository.save(cadastro);
+    public CadastroResponseDTO save(CadastroRequestDTO dados){
+        Cidade cidade = cidadeService.buscar(dados.getEndereco().getIdCidade());
+        Profissao profissao = profissaoService.findById(dados.getIdProfissao());
+        List<CadastroExperiencia> experiencias = dados.getExperiencias().stream().map(e -> cadastroExperienciaService.findById(e.getIdExperiencia())).toList();
+
+        Cadastro cadastro = modelMapper.map(dados, Cadastro.class);
+
+        cadastro.getEndereco().setCidade(cidade);
+        cadastro.setProfissao(profissao);
+        cadastro.setExperiencias(experiencias);
+
+        cadastroRepository.save(cadastro);
+
+        return modelMapper.map(cadastro, CadastroResponseDTO.class);
     }
 
     @Transactional
