@@ -1,27 +1,35 @@
 package com.grupo01.jobby.services;
 
+import com.grupo01.jobby.DTO.profissao.ProfissaoResponseDTO;
+import com.grupo01.jobby.DTO.profissao.ProfissaoResquestDTO;
 import com.grupo01.jobby.model.cadastro.Profissao;
 import com.grupo01.jobby.model.cadastro.exception.EntityNotFoundException;
 import com.grupo01.jobby.repositories.ProfissaoRepository;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
+import org.modelmapper.ModelMapper;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 @Service
 @RequiredArgsConstructor
 public class ProfissaoService {
 
     private final ProfissaoRepository profissaoRepository;
+    private final ModelMapper modelMapper;
+
     @Transactional
-    public Profissao save (Profissao profissao){
-        return profissaoRepository.save(profissao);
+    public ProfissaoResponseDTO save (ProfissaoResquestDTO dados){
+        Profissao profissao = modelMapper.map(dados, Profissao.class);
+        profissaoRepository.save(profissao);
+
+        return modelMapper.map(profissao, ProfissaoResponseDTO.class);
     }
 
 
-    public List<Profissao> findAll(){
-        return profissaoRepository.findAll();
+    public Page<Profissao> findAll(Pageable page){
+        return profissaoRepository.findAll(page);
     }
 
     public Profissao findById(Integer id){
@@ -30,7 +38,7 @@ public class ProfissaoService {
 
 
     @Transactional
-    public Profissao update(Integer id, Profissao dadosProfissao) {
+    public Profissao update(Integer id, ProfissaoResquestDTO dadosProfissao) {
         Profissao profissao = findById(id);
         profissao.atualizar(dadosProfissao);
 

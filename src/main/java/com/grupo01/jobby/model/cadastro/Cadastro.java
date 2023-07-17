@@ -1,5 +1,6 @@
 package com.grupo01.jobby.model.cadastro;
 
+import com.grupo01.jobby.model.cadastro.enums.SexoEnum;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Data;
@@ -19,8 +20,10 @@ public class Cadastro {
     @Column(length = 60, nullable = false)
     private String nome;
 
+    private String cpf;
+
     @Enumerated(EnumType.STRING)
-    private Sexo sexo;
+    private SexoEnum sexoEnum;
 
     @Embedded
     private PretencaoSalarial pretencaoSalarial;
