@@ -53,4 +53,7 @@ public class CadastroService {
         return cadastroRepository.countCadastroByProfissao();
     }
 
+    public List<Cadastro> buscarComHabilidade() {
+        return cadastroRepository.buscarCandidatosComHabilidade();
+    }
 }

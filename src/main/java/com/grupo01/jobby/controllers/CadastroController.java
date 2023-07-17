@@ -36,4 +36,9 @@ public class CadastroController {
     public ResponseEntity<List<Object[]>> contarPorProfissao(){
         return ResponseEntity.ok(cadastroService.contarPorProfissoes());
     }
+
+    @GetMapping("/com-habilidade")
+    public ResponseEntity<List<Cadastro>> buscarComHabilidade(){
+        return ResponseEntity.ok(cadastroService.buscarComHabilidade());
+    }
 }

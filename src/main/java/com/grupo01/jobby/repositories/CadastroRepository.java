@@ -16,4 +16,11 @@ public interface CadastroRepository extends JpaRepository<Cadastro, Integer> {
    @Query("SELECT p.name, COUNT(c) FROM Cadastro c JOIN c.Profissao p GROUP BY p.id, p.name")
    List<Object[]> countCadastroByProfissao();
 
+   // Consulta que devolve cadastros sem habilidades vinculadas
+   @Query("SELECT c FROM Cadastro c WHERE EXISTS (SELECT 1 FROM c.habilidades h)")
+   List<Cadastro> buscarCandidatosComHabilidade();
+
+
+
+
 }
