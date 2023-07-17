@@ -2,7 +2,9 @@ package com.grupo01.jobby.model.cadastro;
 
 import com.grupo01.jobby.model.cadastro.enums.RegimeDeContratacaoENUM;
 import jakarta.persistence.*;
+import lombok.AccessLevel;
 import lombok.Data;
+import lombok.Setter;
 
 import java.time.LocalDate;
 import java.util.Date;
@@ -13,7 +15,7 @@ public class CadastroExperiencia {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Integer idExperiencia;
     private Double salario;
     private boolean empregoAtual;
 
@@ -21,7 +23,7 @@ public class CadastroExperiencia {
     private LocalDate dataContratacao;
 
     @Column(columnDefinition = "DATE")
-    private Date datDesligamento;
+    private LocalDate datDesligamento;
 
     @Enumerated(EnumType.STRING)
     private RegimeDeContratacaoENUM regimeDeContratacaoENUM;
@@ -29,6 +31,7 @@ public class CadastroExperiencia {
     private String empresa;
 
     @ManyToOne(cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "profissao_id")
     private Profissao profissao;
 
 }

@@ -24,7 +24,6 @@ public class CadastroService {
     private final CidadeService cidadeService;
     private final ProfissaoService profissaoService;
     private final CadastroExperienciaService cadastroExperienciaService;
-    private final HabilidadeService habilidadeService;
     private final ModelMapper modelMapper;
 
     @ReadOnlyProperty
@@ -43,14 +42,12 @@ public class CadastroService {
         Cidade cidade = cidadeService.buscar(dados.getEndereco().getIdCidade());
         Profissao profissao = profissaoService.findById(dados.getIdProfissao());
         List<CadastroExperiencia> experiencias = dados.getExperiencias().stream().map(e -> cadastroExperienciaService.findById(e.getIdExperiencia())).toList();
-        List<Habilidade> habilidades = dados.getHabilidades().stream().map(e -> habilidadeService.findById(e.getId())).toList();
 
         Cadastro cadastro = modelMapper.map(dados, Cadastro.class);
 
         cadastro.getEndereco().setCidade(cidade);
         cadastro.setProfissao(profissao);
         cadastro.setExperiencias(experiencias);
-        cadastro.setHabilidades(habilidades);
 
         cadastroRepository.save(cadastro);
 

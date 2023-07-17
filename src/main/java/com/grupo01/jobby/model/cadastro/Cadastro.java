@@ -35,14 +35,15 @@ public class Cadastro {
     private PretensaoSalarial pretensaoSalarial;
 
     @Embedded
+
     private Celular celularPessoal;
 
     @Embedded
     @AttributeOverrides({
             @AttributeOverride(name="numero",
-                    column=@Column(name="cel_num_pess")),
+                    column=@Column(name="cel_num_prof")),
             @AttributeOverride(name="whatsapp",
-                    column=@Column(name="cel_is_whats_pess"))
+                    column=@Column(name="cel_is_whats_prof"))
     })
     private Celular celularProfissional;
 
@@ -56,10 +57,6 @@ public class Cadastro {
     @OneToMany(cascade = CascadeType.ALL)
     @JoinTable(name = "candidato_experiencia")
     private List<CadastroExperiencia> experiencias;
-
-    @OneToMany
-    @JoinTable(name = "candidato_habilidades")
-    private List<Habilidade> habilidades;
 
 
 }

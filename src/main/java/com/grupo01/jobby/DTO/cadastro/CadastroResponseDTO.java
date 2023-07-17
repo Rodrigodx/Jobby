@@ -27,6 +27,5 @@ public class CadastroResponseDTO {
     private EnderecoResponseDTO endereco;
     private ProfissaoResponseDTO profissao;
     private List<CadastroExperiencia> experiencias;
-    private List<Habilidade> habilidades;
 
 }
