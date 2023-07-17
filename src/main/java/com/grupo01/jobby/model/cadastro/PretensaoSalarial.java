@@ -6,7 +6,7 @@ import lombok.Data;
 
 @Data
 @Embeddable
-public class PretencaoSalarial {
+public class PretensaoSalarial {
 
     @Column(name = "vl_min")
     private Double valorMinimo;
