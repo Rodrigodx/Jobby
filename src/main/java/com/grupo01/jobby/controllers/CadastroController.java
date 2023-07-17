@@ -12,6 +12,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping(value = "api/cadastros")
 @RequiredArgsConstructor
@@ -30,4 +32,8 @@ public class CadastroController {
         return new ResponseEntity<>(cadastroService.save(dados), HttpStatus.CREATED);
     }
 
+    @GetMapping("/count-profissao")
+    public ResponseEntity<List<Object[]>> contarPorProfissao(){
+        return ResponseEntity.ok(cadastroService.contarPorProfissoes());
+    }
 }

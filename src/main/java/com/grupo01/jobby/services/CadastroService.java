@@ -49,6 +49,8 @@ public class CadastroService {
         return modelMapper.map(cadastro, CadastroResponseDTO.class);
     }
 
-
+    public List<Object[]> contarPorProfissoes() {
+        return cadastroRepository.countCadastroByProfissao();
+    }
 
 }
