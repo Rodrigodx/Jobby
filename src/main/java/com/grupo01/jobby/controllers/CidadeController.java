@@ -20,12 +20,12 @@ public class CidadeController {
     }
 
     @GetMapping
-    public ResponseEntity<Cidade> save(@RequestBody Integer id) {
+    public ResponseEntity<Cidade> findById(@RequestBody Integer id) {
         return new ResponseEntity<>(cidadeService.buscar(1), HttpStatus.ACCEPTED);
     }
 
     @DeleteMapping
-    public ResponseEntity<Cidade> delete(@RequestBody Integer id) {
+    public ResponseEntity<Boolean> delete(@RequestBody Integer id) {
 
         return new ResponseEntity<>(cidadeService.delete(id), HttpStatus.ACCEPTED);
     }

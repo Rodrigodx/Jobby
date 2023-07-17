@@ -1,10 +1,12 @@
 package com.grupo01.jobby.model.cadastro;
 
+import com.grupo01.jobby.model.cadastro.enums.SexoEnum;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Data;
 import lombok.Setter;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Entity
@@ -19,8 +21,13 @@ public class Cadastro {
     @Column(length = 60, nullable = false)
     private String nome;
 
+    private String cpf;
+
+    @Column(columnDefinition = "DATE")
+    private LocalDate dataNascimento;
+
     @Enumerated(EnumType.STRING)
-    private Sexo sexo;
+    private SexoEnum sexoEnum;
 
     @Embedded
     private PretencaoSalarial pretencaoSalarial;
@@ -40,13 +47,18 @@ public class Cadastro {
     @Embedded
     private Endereco endereco;
 
-    @Column(name = "id_profissao")
-    private Integer idProfissao;
+    private String email;
 
-    @ElementCollection
-    @CollectionTable(name="tab_cad_habilidade",
-            joinColumns=@JoinColumn(name = "cad_id"))
-    @Column(name="nm_habil")
-    private List<String> habilidades;
+    @ManyToOne(cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "id_profissao")
+    private Profissao Profissao;
+
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinTable(name = "candidato_experiencia")
+    private List<CadastroExperiencia> experiencias;
+
+    @ManyToMany
+    @JoinTable(name = "candidato_habilidade")
+    private List<Habilidade> habilidades;
 
 }
