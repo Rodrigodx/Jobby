@@ -6,6 +6,7 @@ import lombok.AccessLevel;
 import lombok.Data;
 import lombok.Setter;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Entity
@@ -21,6 +22,9 @@ public class Cadastro {
     private String nome;
 
     private String cpf;
+
+    @Column(columnDefinition = "DATE")
+    private LocalDate dataNascimento;
 
     @Enumerated(EnumType.STRING)
     private SexoEnum sexoEnum;
@@ -43,8 +47,14 @@ public class Cadastro {
     @Embedded
     private Endereco endereco;
 
-    @Column(name = "id_profissao")
-    private Integer idProfissao;
+    @ManyToOne(cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "id_profissao")
+    private Profissao Profissao;
+
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinTable(name = "candidato_experiencia")
+    private List<CadastroExperiencia> experiencias;
+
 
     @ElementCollection
     @CollectionTable(name="tab_cad_habilidade",
