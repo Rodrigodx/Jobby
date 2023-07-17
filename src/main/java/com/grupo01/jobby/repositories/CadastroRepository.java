@@ -12,8 +12,6 @@ import java.util.List;
 
 public interface CadastroRepository extends JpaRepository<Cadastro, Integer> {
 
-   Page<Cadastro> findAll(Pageable page);
-
    // 4 - Contar quantos candidatos possuem a habilidade JAVA
 
    // 5 - Consulta que devolve cadastros sem habilidades vinculadas
@@ -37,6 +35,7 @@ public interface CadastroRepository extends JpaRepository<Cadastro, Integer> {
    List<Cadastro> candidatosComTrabalho();
 
    // 12 - Criar uma consulta que retorne todos os candidatos e nome da sua profissão correspondentemente
+   Page<Cadastro> findAll(Pageable page);
 
    // 13 - Criar uma consulta que retorne todos os candidatos e nome da sua profissão onde o id da profissão corresponda ao registro ANALISTA DE SISTEMAS
    @Query("SELECT c, p.name FROM Cadastro c JOIN c.Profissao p WHERE p.name = :nomeProfissao")
@@ -47,5 +46,7 @@ public interface CadastroRepository extends JpaRepository<Cadastro, Integer> {
    List<Object[]> countCadastroByProfissao();
 
    // 15 - Criar uma consulta que retorne os candidatos ordenados por profissão e salário máximo de forma decrescente
+   @Query("SELECT c FROM Cadastro c JOIN c.Profissao p ORDER BY p.name, c.pretencaoSalarial.valorMaximo DESC")
+   List<Cadastro> buscarCandidatosOrdenadosPorProfissaoESalario();
 
 }

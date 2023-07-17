@@ -55,8 +55,13 @@ public class CadastroController {
         return ResponseEntity.ok(cadastroService.candidatosPorSexoEEstado(sexo, sigla));
     }
 
-    @GetMapping("/sexo-e-uf")
+    @GetMapping("/por-profissao")
     public List<Cadastro> cadastrosPorProfissao(String nomeProfissao) {
         return cadastroService.cadastrosPorProfissao(nomeProfissao);
+    }
+
+    @GetMapping("/profissao-salario")
+    public List<Cadastro> buscarCandidatosOrdenadosPorProfissaoESalario() {
+        return cadastroService.buscarCandidatosOrdenadosPorProfissaoESalario();
     }
 }

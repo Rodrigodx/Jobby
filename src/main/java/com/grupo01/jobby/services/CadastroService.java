@@ -69,4 +69,8 @@ public class CadastroService {
     public List<Cadastro> cadastrosPorProfissao(String nomeProfissao) {
         return cadastroRepository.cadastrosPorProfissao(nomeProfissao);
     }
+
+    public List<Cadastro> buscarCandidatosOrdenadosPorProfissaoESalario() {
+        return cadastroRepository.buscarCandidatosOrdenadosPorProfissaoESalario();
+    }
 }
