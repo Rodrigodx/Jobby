@@ -30,7 +30,7 @@ public class CadastroExperienciaController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<CadastroExperiencia> findAllById(@PathVariable Long id){
+    public ResponseEntity<CadastroExperiencia> findById(@PathVariable Long id){
         return new ResponseEntity<>(cadastroExperienciaService.findById(id), HttpStatus.OK);
     }
 
