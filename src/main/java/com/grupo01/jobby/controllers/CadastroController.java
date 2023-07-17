@@ -3,6 +3,7 @@ package com.grupo01.jobby.controllers;
 import com.grupo01.jobby.DTO.cadastro.CadastroResponseDTO;
 import com.grupo01.jobby.DTO.cadastro.CadastroRequestDTO;
 import com.grupo01.jobby.model.cadastro.Cadastro;
+import com.grupo01.jobby.model.cadastro.enums.SexoEnum;
 import com.grupo01.jobby.services.CadastroService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -45,5 +46,12 @@ public class CadastroController {
     @GetMapping("/trabalhando")
     public ResponseEntity<List<Cadastro>> candidatosComTrabalho(){
         return ResponseEntity.ok(cadastroService.candidatosComTrabalho());
+    }
+
+    @GetMapping("/sexo-e-uf")
+    public ResponseEntity<List<Cadastro>> candidatosPorSexoEEstado(@RequestParam(value = "sexo",
+            required = true) SexoEnum sexo, @RequestParam(value = "sigla",
+            required = true, defaultValue = "") String sigla) {
+        return ResponseEntity.ok(cadastroService.candidatosPorSexoEEstado(sexo, sigla));
     }
 }

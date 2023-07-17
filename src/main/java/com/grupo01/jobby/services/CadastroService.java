@@ -6,6 +6,7 @@ import com.grupo01.jobby.model.cadastro.Cadastro;
 import com.grupo01.jobby.model.cadastro.CadastroExperiencia;
 import com.grupo01.jobby.model.cadastro.Cidade;
 import com.grupo01.jobby.model.cadastro.Profissao;
+import com.grupo01.jobby.model.cadastro.enums.SexoEnum;
 import com.grupo01.jobby.repositories.CadastroRepository;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
@@ -59,5 +60,9 @@ public class CadastroService {
 
     public List<Cadastro> candidatosComTrabalho() {
         return cadastroRepository.candidatosComTrabalho();
+    }
+
+    public List<Cadastro> candidatosPorSexoEEstado(SexoEnum sexo, String sigla) {
+        return cadastroRepository.candidatosPorSexoEEstado(sexo, sigla);
     }
 }
